@@ -9,6 +9,11 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
+    <style>
+      #center{
+        text-align: center;
+      }
+  </style>
     <title>Calculdora</title>
   </head>
   <body class="bg-light">
@@ -21,21 +26,29 @@
       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#">Sobre</a>
+
+            <!--<li class="nav-item">
+              <a href="{% url 'instrucoes' %}" class="nav-link">Intruções</a>
             </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#sobre">Sobre</a>
+            </li>-->
+
+          </ul>
         </div>
       </nav>
 
       <div class="container-fluid" style="margin-bottom: 15rem;">
+        
           <div class="row">
               <div class="col-md-6" style="margin: 2rem  auto 0 auto;">
                 <!--<img class="img-fluid" src="{% static 'cal.png' %}">-->
                 <div class="card">
                     <div class="card-body">
-                        <form action="#" method="GET">
+                        <form action="{% url 'subimit' %}" method="GET">
                             <div class="form-group">
-                                <input type="search" class="form-control" name="query" id="query">
+                                <input type="text" class="form-control" name="entrada" id="query">
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
@@ -50,23 +63,71 @@
                 </div>
               </div>
           </div>
+          <br>
           <div class="row">
+            <div class="col-md-6" style="margin: 0 auto;">
+              {% if error %}
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Erro!</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              {% endif%}
+              {% if res %}
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>{{ entrada }} = {{ aux }}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              {% endif%}
+            </div>  
+          </div>
+          <!--<div class="row">
               <div class="col-md-6" style="margin: 0 auto;">
-                <p class="display-4">
+                <p class="display-4" id="sobre" name="sobre" style="text-align: center;">
                     Sobre
                 </p>
                 <hr>
-                <p class="lead">
+                <p class="lead" style="text-align: center;">
                     Esta aplicação realiza operações matemáticas.
                   </p>
               </div>
-          </div>
+          </div>-->
+
+          <div class="row">
+            <div class="col-md-6" style="margin: 0 auto;">
+              <p class="display-4" id="instrucao" name="instrucoes" style="text-align: center;">
+                  Instruções
+              </p>
+              <hr>
+              <ul class="list-group">
+                <li class="list-group-item"  id="center">Adição: +.</li>
+                <li class="list-group-item"  id="center">Subtração: -.</li>
+                <li class="list-group-item"  id="center">Multiplicação: *.</li>
+                <li class="list-group-item"  id="center">Divisão: /.</li>
+                <li class="list-group-item"  id="center">Divisão Inteira: /.</li>
+                <li class="list-group-item"  id="center">Parênsteses: ().</li>
+                <li class="list-group-item"  id="center">Exponencial: **.</li>
+                <li class="list-group-item"  id="center">Resto da Divisão: %.</li>
+              </ul>
+              <!--<ul class="list-group">
+                <li class="list-group-item">Cras justo odio</li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item">Morbi leo risus</li>
+                <li class="list-group-item">Porta ac consectetur ac</li>
+                <li class="list-group-item">Vestibulum at eros</li>
+              </ul>-->
+            </div>
+           </div>
+        </div>
       </div>
 
       <div class="container-fluid">
           <div class="row">
               <footer class="fixed-bottom navbar-light" style="background: black;color: white;text-align: center;">
-                <p></p>
+                <p>Esta aplicação realiza operações matemáticas.</p>
               </footer>
           </div>
       </div>
